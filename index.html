@@ -46,7 +46,7 @@
         date:"12.02.22 12:18",
         text:"Это будет первый комментарий на этой странице",
         isLiked:false,
-        likeCount:99999999
+        likeCount:73
       },
       {
         name:"Варвара H.",
@@ -111,18 +111,6 @@
 
     // Вызов функции инициализации лайка
     initLikeButtonListeners();
-    //инициализация обработчика событий ответа на комментарий
-    const initAnswerListeners = () => {
-      const headsElements = document.querySelectorAll(".comment-header");
-      
-      for(const headElement of headsElements){
-        headElement.addEventListener('click', () => {
-          const index = headElement.dataset.index;
-          //Добавляем в текущее .value данные из массива
-          textInputElement.value = `>${comments[index - 1].text}\n${comments[index - 1].name}`
-      });
-    };
-  };
     //Обработчик событий на кнопку отправить
     buttonElement.addEventListener('click', () =>{
       nameInputElement.classList.remove('error');
@@ -157,10 +145,5 @@
     });
     
     renderComments();
-
-    //добавить обработчик клика для рамки комментариев
-    //реализовать копирование текста и имени в текст инпут 
-    //прописать выполнение пуша текста в textElement.value
-    //отключить всплытие для кнопки лайка
   </script>
 </html>
