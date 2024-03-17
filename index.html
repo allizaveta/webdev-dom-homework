@@ -37,6 +37,17 @@
       const textInputElement = document.getElementById("text-input");
       const buttonElement = document.getElementById("send-button");
       const listElement = document.getElementById("list");
+      //Форматирование даты
+      // Функция для форматирования даты
+      const formatDate = (date) => {
+        const day = ('0' + date.getDate()).slice(-2);
+        const month = ('0' + (date.getMonth() + 1)).slice(-2);
+        const year = ('' + date.getFullYear()).slice(-2);
+        const hours = ('0' + date.getHours()).slice(-2);
+        const minutes = ('0' + date.getMinutes()).slice(-2);
+        return `${hours}:${minutes} ${day}.${month}.${year}`;
+      };
+
       // Функция для получения комментариев
       const getComments = () => {
         fetch('https://wedev-api.sky.pro/api/v1/:elizaveta-aleksandrova/comments', {
@@ -75,10 +86,12 @@
         const commentsHtml = comments.map((comment, index) => {
           // Добавляем класс active-like, если isLiked равно true
           const likeButtonClass = comment.isLiked ? 'like-button active-like' : 'like-button';
+          //Форматируем дату
+          const formattedDate = formatDate(comment.date);
           return `<li class="comment">
             <div class="comment-header">
               <div>${comment.name}</div>
-              <div>${comment.date}</div>
+              <div>${formattedDate}</div>
             </div>
             <div class="comment-body">
               <div class="comment-text">
