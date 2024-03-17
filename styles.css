@@ -139,3 +139,18 @@ body {
 .error{
   background-color: red;
 }
+
+.preloader-hidden{
+  display: none;
+}
+
+.hidden{
+  display: none;
+}
+#preloader{
+  background-color: #202020;
+  color: #ffffff;
+  text-align: center;
+  margin: 0;
+  padding-top: 100px;
+}
