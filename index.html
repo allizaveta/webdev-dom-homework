@@ -69,7 +69,7 @@
               isLiked: comment.isLiked,
             };
           });
-
+          //сделать ЛовИтель ошИбок тут
           comments = appComments;
           renderComments();
           //Добавляем функцию прелоадера
@@ -133,8 +133,6 @@
       };
       // Обработчик событий на кнопку отправить
       buttonElement.addEventListener('click', () =>{
-        let currentDate = new Date();
-        let formattedDateTime = ('0' + currentDate.getDate()).slice(-2) + '.' + ('0' + (currentDate.getMonth() + 1)).slice(-2) + '.' + ('' + currentDate.getFullYear()).slice(-2) + ' ' + ('0' + currentDate.getHours()).slice(-2) + ':' + ('0' + currentDate.getMinutes()).slice(-2);
         nameInputElement.classList.remove('error');
         textInputElement.classList.remove('error');
         // Валидация инпута на пустые строки
@@ -162,8 +160,12 @@
           {
             method:"POST",
             body:JSON.stringify({
-              name:nameInputElement.value,
-              text:textInputElement.value,
+              name:nameInputElement.value
+              .replaceAll("<", "&lt;")
+              .replaceAll(">", "&gt;"),
+              text:textInputElement.value
+              .replaceAll("<", "&lt;")
+              .replaceAll(">", "&gt;"),
             }),
           });
 
@@ -176,18 +178,23 @@
         })
           .then((responseData) => {
           buttonElement.disabled = false;
-        buttonElement.textContent= 'Отправить';
+          buttonElement.textContent= 'Отправить';
+          // Очистка инпутов
+          textInputElement.value = '';
+          nameInputElement.value = '';
+          addForm.classList.remove('hidden')
+          loader.classList.add('hidden')
           // После успешного выполнения POST запроса вызываем функцию для получения комментариев
           getComments();
         })
           .catch((error) => {
-          console.error('Ошибка:', error);
-          // Отображаем сообщение об ошибке на странице
-          errorElement.textContent = 'Ошибка при отправке комментария';
+          //возвращаем addForm
+          addForm.classList.remove('hidden')
+          loader.classList.add('hidden')
+          alert('кажется что-то пошло не так');
+          //отправить в систему сбора ошибок
+          console.warn(error);
         });
-        // Очистка инпутов
-        textInputElement.value = '';
-        nameInputElement.value = '';
       });
       // Вызов функции получения комментариев при загрузке страницы
       getComments();
