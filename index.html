@@ -54,10 +54,12 @@
           method: "GET",
         })
         .then((response) =>{
-          if (!response.ok) {
-            throw new Error('Ошибка при получении комментариев');
+          if (response.status === 200) {
+            return response.json();
           }
-          return response.json();
+          else{
+            throw new Error('упси,сервер упал.');
+          }
         })
         .then((responseData) => {
           const appComments = responseData.comments.map((comment) => {
@@ -77,7 +79,7 @@
           preloader.classList.add('preloader-hidden');
         })
         .catch((error) => {
-          console.error('Ошибка:', error);
+          console.warn(error);
         });
       };
 
@@ -135,6 +137,11 @@
       buttonElement.addEventListener('click', () =>{
         nameInputElement.classList.remove('error');
         textInputElement.classList.remove('error');
+        //Проверка длины введеного текста
+        if (textInputElement.value.trim().length < 3) {
+        alert("Вы ввели слишком короткое сообщение");
+        return;
+    }
         // Валидация инпута на пустые строки
         if(nameInputElement.value.trim() === '' && textInputElement.value.trim() === ''){
           nameInputElement.classList.add('error');
@@ -171,10 +178,16 @@
 
         fetchPromise
         .then((response) =>{
-          if (!response.ok) {
-            throw new Error('Ошибка при отправке комментария');
+          if (response.status === 200) {
+            return response.json();
           }
-          return response.json();
+          else if(response.status === 400){
+            alert('Все плохо')
+            throw new Error('Все очень плохо');
+          }
+          else{
+            throw new Error('упси,сервер упал.');
+          }
         })
           .then((responseData) => {
           buttonElement.disabled = false;
