@@ -36,7 +36,6 @@
       const textInputElement = document.getElementById("text-input");
       const buttonElement = document.getElementById("send-button");
       const listElement = document.getElementById("list");
-      //Форматирование даты
       // Функция для форматирования даты
       const formatDate = (date) => {
       const day = ('0' + date.getDate()).slice(-2);
@@ -48,42 +47,38 @@
       };
       
       // Функция для получения комментариев
-      const getComments = () => {
-      fetch('https://wedev-api.sky.pro/api/v1/:elizaveta-aleksandrova/comments', {
-          method: "GET",
-      })
-      .then((response) =>{
-          if (response.status === 200) {
-          return response.json();
-          }
-          else if(response.status === 500){
-          alert('статус 500')
-          }
-          else{
-          throw new Error('упси,сервер упал.');
-          }
-      })
-      .then((responseData) => {
-          const appComments = responseData.comments.map((comment) => {
-          return {
-              name: comment.author.name,
-              date: new Date(comment.date),
-              text: comment.text,
-              likes: comment.likes,
-              isLiked: comment.isLiked,
-          };
-          });
-          comments = appComments;
-          renderComments();
-          //Добавляем функцию прелоадера
-          addForm.classList.remove("hidden");
-          preloader.classList.add('preloader-hidden');
-      })
-      .catch((error) => {
-          console.warn(error);
-      });
-      };
-      
+              const getComments = () => {
+            fetch('https://wedev-api.sky.pro/api/v1/:elizaveta-aleksandrova/comments', {
+                method: "GET",
+            })
+            .then((response) => {
+                if (response.ok) {
+                    return response.json();
+                } else if (response.status === 500) {
+                    throw new Error('Ошибка сервера: 500');
+                } else {
+                    throw new Error('Ошибка: ' + response.status);
+                }
+            })
+            .then((responseData) => {
+                comments = responseData.comments.map(comment => ({
+                    name: comment.author.name,
+                    date: new Date(comment.date),
+                    text: comment.text,
+                    likes: comment.likes,
+                    isLiked: comment.isLiked,
+                }));
+                renderComments();
+                //Добавляем функцию прелоадера
+                addForm.classList.remove("hidden");
+                preloader.classList.add('preloader-hidden');
+            })
+            .catch((error) => {
+                alert('Произошла ошибка: ' + error.message);
+                console.warn(error);
+            });
+        };
+
       // Функция для рендеринга комментариев
       const renderComments = () => {
       const commentsHtml = comments.map((comment, index) => {
@@ -140,11 +135,6 @@
     nameInputElement.classList.remove('error');
     textInputElement.classList.remove('error');
 
-    if (textInputElement.value.trim().length < 3) {
-        alert("Вы ввели слишком короткое сообщение");
-        return;
-    }
-
     if (nameInputElement.value.trim() === '' || textInputElement.value.trim() === '') {
         nameInputElement.classList.add('error');
         textInputElement.classList.add('error');
@@ -175,18 +165,19 @@
         }
     })
     .then((responseData) => {
+      console.log(responseData);
         // Очистка инпутов
         textInputElement.value = '';
         nameInputElement.value = '';
-
         // Обновление комментариев
         const newComment = {
-            name: responseData.name,
-            date: new Date(responseData.date),
-            text: responseData.text,
-            likes: responseData.likes,
-            isLiked: responseData.isLiked,
+        name: responseData.name,
+        date: new Date(responseData.date),
+        text: responseData.text,
+        likes: responseData.likes,
+        isLiked: responseData.isLiked,
         };
+
         comments.push(newComment);
         renderComments();
 
