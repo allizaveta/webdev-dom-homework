@@ -4,7 +4,6 @@ export function fetchGetComments() {
     return fetch('https://wedev-api.sky.pro/api/v1/:elizaveta-aleksandrova/comments', {
         method: "GET",
     })
-    .then(catchErrorGet());
 };
 
 export function postComments(name, text) {
@@ -16,4 +15,3 @@ export function postComments(name, text) {
         }),
     });
 }
-

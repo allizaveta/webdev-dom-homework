@@ -5,7 +5,7 @@ export function catchErrorPost(nameInputElement, textInputElement, comments) {
     postComments(nameInputElement.value, textInputElement.value)
         .then((response) => {
             if (response.ok) {
-                return response.json();
+                return fetchGetComments(); // Вызываем функцию для получения комментариев сразу после успешного добавления
             } else if (response.status === 400) {
                 throw new Error('Ошибка: Короткий комментарий');
             } else if (response.status === 500) {
@@ -15,9 +15,6 @@ export function catchErrorPost(nameInputElement, textInputElement, comments) {
             }
         })
         .then((responseData) => {
-            return fetchGetComments();
-        })
-        .then((responseData) => {
             comments = responseData.comments.map(comment => ({
                 name: comment.author.name,
                 date: new Date(comment.date),
@@ -25,21 +22,18 @@ export function catchErrorPost(nameInputElement, textInputElement, comments) {
                 likes: comment.likes,
                 isLiked: comment.isLiked,
             }));
-            // Очистка инпутов
-            textInputElement.value = '';
-            nameInputElement.value = '';
             renderComments(comments);
-
-            // Убираем лоадер
-            loader.classList.add('hidden');
+            preloader.classList.add('preloader-hidden'); // Скрываем прелоадер после загрузки комментариев
         })
         .catch((error) => {
             alert('Произошла ошибка: ' + error.message);
             console.error(error);
+            preloader.classList.add('preloader-hidden'); // Скрываем прелоадер при ошибке
         });
 }
 
-export function catchErrorGet() {
+
+export function catchErrorGet(comments) {
     fetchGetComments()
         .then((response) => {
             if (response.ok) {
@@ -59,11 +53,11 @@ export function catchErrorGet() {
                 isLiked: comment.isLiked,
             }));
             renderComments(comments);
-            loader.classList.add('hidden');
+            preloader.classList.add('preloader-hidden');
         })
         .catch((error) => {
             alert('Произошла ошибка: ' + error.message);
             console.error(error);
+            preloader.classList.add('preloader-hidden'); 
         });
 }
-

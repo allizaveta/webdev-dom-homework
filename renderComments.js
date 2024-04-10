@@ -1,3 +1,4 @@
+import {formatDate} from "./formatDate.js"
 export function renderComments(comments) {
     const listElement = document.getElementById("list");
 
@@ -6,7 +7,7 @@ export function renderComments(comments) {
         const formattedDate = formatDate(comment.date);
         return `<li class="comment">
             <div class="comment-header">
-                <div>${comment.author.name}</div>
+                <div>${comment.name}</div>
                 <div>${formattedDate}</div>
             </div>
             <div class="comment-body">
@@ -22,6 +23,5 @@ export function renderComments(comments) {
             </div>
         </li>`;
     }).join("");
-
     listElement.innerHTML = commentsHtml;
 }
