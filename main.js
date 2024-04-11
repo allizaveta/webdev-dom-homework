@@ -3,11 +3,10 @@ import { catchErrorPost, catchErrorGet } from "./errorHandler.js";
 const nameInputElement = document.getElementById("name-input");
 const textInputElement = document.getElementById("text-input");
 const buttonElement = document.getElementById("send-button");
-const loader = document.getElementById("loader"); // Добавляем получение элемента прелоадера
+const preloader = document.getElementById("preloader");
+export const comments = [];
 
-let comments = [];
-
-catchErrorGet(comments); 
+catchErrorGet(comments);
 
 buttonElement.addEventListener('click', () => {
     nameInputElement.classList.remove('error');
@@ -19,7 +18,7 @@ buttonElement.addEventListener('click', () => {
         return;
     }
 
-    loader.classList.remove('hidden');
+    preloader.classList.remove('preloader-hidden');
     catchErrorPost(nameInputElement, textInputElement, comments);
-    
+    catchErrorGet(comments);
 });

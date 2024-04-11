@@ -1,8 +1,8 @@
-import {catchErrorGet} from "./errorHandler.js";
 
 export function fetchGetComments() {
     return fetch('https://wedev-api.sky.pro/api/v1/:elizaveta-aleksandrova/comments', {
         method: "GET",
+        
     })
 };
 
