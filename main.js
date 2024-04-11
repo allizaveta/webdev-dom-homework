@@ -1,4 +1,4 @@
-import { catchErrorPost, catchErrorGet } from "./errorHandler.js";
+import {catchErrorGet } from "./errorHandler.js";
 import { send } from "./send.js";
 
 const nameInputElement = document.getElementById("name-input");
