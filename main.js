@@ -22,5 +22,3 @@ buttonElement.addEventListener('click', () => {
     catchErrorPost(nameInputElement, textInputElement, comments);
     catchErrorGet(comments);
 });
-
-

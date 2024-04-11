@@ -5,18 +5,13 @@ export function initLikeButtonListeners(comments) {
 
     for (const likeButtonElement of likeButtonElements) {
         likeButtonElement.addEventListener('click', () => {
-            const index = parseInt(likeButtonElement.dataset.index);
-            const currentComment = comments[index];
-            currentComment.isLiked = !currentComment.isLiked;
-            
-            if (currentComment.isLiked) {
-                currentComment.likes++;
-                likeButtonElement.classList.add('active-like');
+            const index = likeButtonElement.dataset.index;
+            comments[index].isLiked = !comments[index].isLiked;
+            if (comments[index].isLiked) {
+                comments[index].likes++;
             } else {
-                currentComment.likes--;
-                likeButtonElement.classList.remove('active-like');
+                comments[index].likes--;
             }
-
             renderComments(comments);
         });
     }

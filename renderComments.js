@@ -1,4 +1,5 @@
 import {formatDate} from "./formatDate.js"
+import {initLikeButtonListeners} from "./likeButton.js"
 export function renderComments(comments) {
     const listElement = document.getElementById("list");
 
@@ -24,4 +25,5 @@ export function renderComments(comments) {
         </li>`;
     }).join("");
     listElement.innerHTML = commentsHtml;
+    initLikeButtonListeners(comments);
 }
