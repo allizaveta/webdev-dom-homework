@@ -3,23 +3,9 @@ import { renderComments } from "./renderComments.js";
 
 export function catchErrorPost(nameInputElement, textInputElement, comments) {
     postComments(nameInputElement.value, textInputElement.value)
-        .then((responseData) => {
-            comments = responseData.comments.map(comment => ({
-                name: comment.author.name,
-                date: new Date(comment.date),
-                text: comment.text,
-                likes: comment.likes,
-                isLiked: comment.isLiked,
-            }));
-            renderComments(comments);
-            preloader.classList.add('preloader-hidden');
-        })
-        .then(() => {
-            return postComments(nameInputElement.value, textInputElement.value);
-        })
         .then((response) => {
             if (response.ok) {
-                return fetchGetComments();
+                return response.json();
             } else if (response.status === 400) {
                 throw new Error('Ошибка: Короткий комментарий');
             } else if (response.status === 500) {
@@ -29,6 +15,16 @@ export function catchErrorPost(nameInputElement, textInputElement, comments) {
             }
         })
         .then((responseData) => {
+            return fetchGetComments();
+        })
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error('Ошибка: ' + response.status);
+            }
+        })
+        .then(responseData => {
             comments = responseData.comments.map(comment => ({
                 name: comment.author.name,
                 date: new Date(comment.date),
@@ -36,12 +32,23 @@ export function catchErrorPost(nameInputElement, textInputElement, comments) {
                 likes: comment.likes,
                 isLiked: comment.isLiked,
             }));
+            return responseData;
+        })
+        .then((responseData) => {
+            // Очистка инпутов
+            textInputElement.value = '';
+            nameInputElement.value = '';
             renderComments(comments);
+
+            // Убираем лоадер
+            addForm.classList.remove('hidden');
+            loader.classList.add('hidden');
         })
         .catch((error) => {
+            addForm.classList.remove('hidden');
+            loader.classList.add('hidden');
             alert('Произошла ошибка: ' + error.message);
             console.error(error);
-            preloader.classList.add('preloader-hidden');
         });
 }
 
@@ -70,6 +77,6 @@ export function catchErrorGet(comments) {
         .catch((error) => {
             alert('Произошла ошибка: ' + error.message);
             console.error(error);
-            preloader.classList.add('preloader-hidden'); 
+            preloader.classList.add('preloader-hidden');
         });
 }
