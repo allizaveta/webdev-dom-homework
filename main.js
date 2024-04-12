@@ -1,5 +1,4 @@
 import {catchErrorGet } from "./errorHandler.js";
-import { send } from "./send.js";
 
 const nameInputElement = document.getElementById("name-input");
 const textInputElement = document.getElementById("text-input");
@@ -8,4 +7,3 @@ const preloader = document.getElementById("preloader");
 const comments = [];
 
 catchErrorGet(comments);
-send(buttonElement, textInputElement, nameInputElement, comments, preloader);

@@ -8,5 +8,3 @@ const initAnswerListeners = () => {
         });
     });
 };
-
-initAnswerListeners();
