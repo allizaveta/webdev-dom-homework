@@ -1,4 +1,4 @@
-const initAnswerListeners = () => {
+export const initAnswerListeners = (comments) => {
     const headElements = document.querySelectorAll(".comment-header");
     headElements.forEach((headElement, index) => {
         headElement.addEventListener('click', () => {

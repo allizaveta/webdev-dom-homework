@@ -55,7 +55,6 @@ export function renderComments(comments) {
       <p id="autorization-button">Чтобы оставлять комментарии - авторизуйтесь</p>
       <p id="loader" class="hidden">Коментарий добавляется...</p>
     </div>`;
-
     appElement.innerHTML = appHtml;
     const nameInputElement = document.querySelector(".add-form-name");
     const textInputElement = document.querySelector(".add-form-text");    

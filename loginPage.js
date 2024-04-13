@@ -1,6 +1,5 @@
 import { login, setToken } from "./api.js";
 import { catchErrorGet } from "./errorHandler.js";
-import { renderComments } from "./renderComments.js";
 
 export const renderLogin = () => {
     const appElement = document.getElementById("app");
@@ -33,4 +32,3 @@ export const renderLogin = () => {
         });
     });
 };
-
