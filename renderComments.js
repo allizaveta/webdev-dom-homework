@@ -57,8 +57,8 @@ export function renderComments(comments) {
     </div>`;
 
     appElement.innerHTML = appHtml;
-    const nameInputElement = document.getElementById("name-input");
-    const textInputElement = document.getElementById("text-input");
+    const nameInputElement = document.querySelector(".add-form-name");
+    const textInputElement = document.querySelector(".add-form-text");    
     const buttonElement = document.getElementById("send-button");
     const preloader = document.getElementById("preloader");
 
