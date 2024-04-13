@@ -51,7 +51,6 @@ export function renderComments(comments) {
         </div>
       </div>
       <p id="loader" class="hidden">Коментарий добавляется...</p>
-      <a href="./login.html">Войти</a>
     </div>`;
 
     appElement.innerHTML = appHtml;
