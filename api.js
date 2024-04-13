@@ -11,7 +11,7 @@ export function fetchGetComments() {
     return fetch("https://wedev-api.sky.pro/api/v2/:elizaveta-aleksandrova/comments", {
         method: "GET",
         headers:{
-            Authorization: token,
+            Authorization:`Bearer ${token}`,
         },
     })
 };
@@ -20,7 +20,7 @@ export function postComments(name, text) {
     return fetch(host, {
         method: "POST",
         headers:{
-            Authorization: token,
+            Authorization:`Bearer ${token}`,
         },
         body: JSON.stringify({
             name: name.replaceAll("<", "&lt;").replaceAll(">", "&gt;"),
