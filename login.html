@@ -6,9 +6,22 @@
     <title>Вход</title>
 </head>
 <body>
-    <input type="text" placeholder="Логин" ><br><br>
-    <input type="text" placeholder="Пароль" ><br><br>
-    <button>Войти</button>
-<script type="module" src="./login.js" ></script>
+        <div class="form">
+            <h3>Форма входа</h3>
+            <div class="form--row">
+                <input type="text"
+                id="login-input"
+                class="input"
+                placeholder="Логин">
+                <input type="text"
+                id="password-input"
+                class="input"
+                placeholder="Пароль">
+            </div>
+            <br>
+            <button class="button" id="login-button">Войти</button>
+            <a href="./index.html">Перейти на страницу комментариев</a>
+        </div>
+    <script type="module" src="./loginPage.js" ></script>
 </body>
 </html>

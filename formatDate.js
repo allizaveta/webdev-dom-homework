@@ -6,4 +6,3 @@ export function formatDate(date){
     const minutes = ('0' + date.getMinutes()).slice(-2);
     return `${hours}:${minutes} ${day}.${month}.${year}`;
 };
-
