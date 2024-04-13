@@ -1,6 +1,6 @@
-import { renderLogin } from "./loginPage.js";
+import { catchErrorGet } from "./errorHandler.js";
 
 const comments = [];
 
-// catchErrorGet(comments);
-renderLogin();
+catchErrorGet(comments);
+// renderLogin();

@@ -10,7 +10,10 @@ export function catchErrorPost(nameInputElement, textInputElement, comments) {
                 throw new Error('Ошибка: Короткий комментарий');
             } else if (response.status === 500) {
                 throw new Error('Ошибка сервера: 500');
-            } else {
+            } else if(response.status === 401) {
+                throw new Error('Отсутствует авторизация')
+            }
+            else {
                 throw new Error('Ошибка: ' + response.status);
             }
         })
@@ -38,11 +41,11 @@ export function catchErrorPost(nameInputElement, textInputElement, comments) {
             // Очистка инпутов
             textInputElement.value = '';
             nameInputElement.value = '';
-            renderComments(comments);
-
             // Убираем лоадер
-            addForm.classList.remove('hidden');
+            addForm.classList.add('hidden');
             loader.classList.add('hidden');
+            renderComments(comments);
+            
         })
         .catch((error) => {
             addForm.classList.remove('hidden');
@@ -59,7 +62,9 @@ export function catchErrorGet(comments) {
                 return response.json();
             } else if (response.status === 500) {
                 throw new Error('Ошибка сервера: 500');
-            } else {
+            } else if(response.status === 401) {
+                throw new Error('Отсутствует авторизация')}
+            else {
                 throw new Error('Ошибка: ' + response.status);
             }
         })
@@ -79,4 +84,6 @@ export function catchErrorGet(comments) {
             console.error(error);
             preloader.classList.add('preloader-hidden');
         });
+        
 }
+

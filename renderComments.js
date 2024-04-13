@@ -1,6 +1,7 @@
 import {formatDate} from "./formatDate.js"
 import {initLikeButtonListeners} from "./likeButton.js"
 import { catchErrorGet, catchErrorPost } from "./errorHandler.js";
+import { renderLogin } from "./loginPage.js";
 export function renderComments(comments) {
     const appElement = document.getElementById("app")
     const listElement = document.getElementById("list");
@@ -36,8 +37,9 @@ export function renderComments(comments) {
         <input
           type="text"
           class="add-form-name"
-          placeholder="Введите ваше имя"
+          placeholder=${name}
           id="name-input"
+          readonly
         />
         <textarea
           type="textarea"
@@ -50,6 +52,7 @@ export function renderComments(comments) {
           <button class="add-form-button" id="send-button">Написать</button>
         </div>
       </div>
+      <p id="autorization-button">Чтобы оставлять комментарии - авторизуйтесь</p>
       <p id="loader" class="hidden">Коментарий добавляется...</p>
     </div>`;
 
@@ -68,11 +71,15 @@ export function renderComments(comments) {
                 textInputElement.classList.add('error');
                 return;
             }
-    
-            preloader.classList.remove('preloader-hidden');
+            
             catchErrorPost(nameInputElement, textInputElement, comments);
             catchErrorGet(comments);
         });
 
     initLikeButtonListeners(comments);
+
+    const autorizeButton = document.getElementById("autorization-button");
+      autorizeButton.addEventListener("click", () => {
+      renderLogin();
+    });
 }
