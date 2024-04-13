@@ -2,6 +2,7 @@ import {formatDate} from "./formatDate.js"
 import {initLikeButtonListeners} from "./likeButton.js"
 import { catchErrorGet, catchErrorPost } from "./errorHandler.js";
 import { renderLogin } from "./loginPage.js";
+import { initAnswerListeners } from "./answer.js";
 export function renderComments(comments) {
     const appElement = document.getElementById("app")
     const listElement = document.getElementById("list");
@@ -76,6 +77,7 @@ export function renderComments(comments) {
         });
 
     initLikeButtonListeners(comments);
+    initAnswerListeners(comments, textInputElement);
 
     const autorizeButton = document.getElementById("autorization-button");
       autorizeButton.addEventListener("click", () => {
