@@ -37,7 +37,7 @@ export function renderComments(comments) {
         <input
           type="text"
           class="add-form-name"
-          placeholder=${name}
+          value=${name}
           id="name-input"
           readonly
         />

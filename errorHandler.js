@@ -1,5 +1,6 @@
 import { postComments, fetchGetComments } from "./api.js";
 import { renderComments } from "./renderComments.js";
+import { login } from "./api.js";
 
 export function catchErrorPost(nameInputElement, textInputElement, comments) {
     postComments(nameInputElement.value, textInputElement.value)
@@ -83,7 +84,16 @@ export function catchErrorGet(comments) {
             alert('Произошла ошибка: ' + error.message);
             console.error(error);
             preloader.classList.add('preloader-hidden');
-        });
-        
+        });       
 }
 
+export function catchErrorLogin() {
+    login().then((response) => {
+        if (response.ok) {
+            return response.json();
+        } else if (response.status === 400) {
+            alert('Неправильный логин или пароль');
+            throw new Error('Неверные данные');
+        }
+    }
+)};
