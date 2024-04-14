@@ -27,7 +27,7 @@ export function renderComments(comments) {
         </li>`;
     }).join("");
 
-    const appHtml = ` <p id="preloader">Пожалуйста подождите, загружаю комментарии</p>
+    const appHtml = `
     <div class="container">
       <ul class="comments" id="list">
         ${commentsHtml}
@@ -57,7 +57,6 @@ export function renderComments(comments) {
     const nameInputElement = document.querySelector(".add-form-name");
     const textInputElement = document.querySelector(".add-form-text");    
     const buttonElement = document.getElementById("send-button");
-    const preloader = document.getElementById("preloader");
 
         buttonElement.addEventListener('click', () => {
             nameInputElement.classList.remove('error');

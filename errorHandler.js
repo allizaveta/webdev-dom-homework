@@ -40,10 +40,8 @@ export function catchErrorPost(nameInputElement, textInputElement, comments) {
             return responseData;
         })
         .then((responseData) => {
-            // Очистка инпутов
             textInputElement.value = '';
             nameInputElement.value = '';
-            // Убираем лоадер
             addForm.classList.add('hidden');
             loader.classList.add('hidden');
             renderComments(comments);
@@ -78,20 +76,16 @@ export function catchErrorGet(comments) {
                 likes: comment.likes,
                 isLiked: comment.isLiked,
             }));
-            document.addEventListener("DOMContentLoaded", () => {
                 const token = localStorage.getItem("token");
                 if (token) {
                     renderComments(comments);
                 } else {
-                    WithAuthorizationButton(comments);
+                    nonAutorizeRender(comments);
                 }
-            });
-            preloader.classList.add('preloader-hidden');
-        })
+            })
         .catch((error) => {
             alert('Произошла ошибка: ' + error.message);
             console.error(error);
-            preloader.classList.add('preloader-hidden');
         });       
 }
 

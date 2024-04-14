@@ -1,7 +1,7 @@
-import { login, setToken } from "./api.js";
-import { fetchGetComments } from "./api.js";
+import { login, setToken,fetchGetComments} from "./api.js";
+import { renderComments } from "./renderComments.js";
 
-export const renderLogin = () => {
+export const renderLogin = (comments) => {
     const appElement = document.getElementById("app");
     const loginHtml = `<div class="form">
         <h3>Форма входа</h3>
@@ -28,7 +28,7 @@ export const renderLogin = () => {
             const loggedInUserName = responseData.user.name;
             const nameInputElement = document.querySelector(".add-form-name");
             
-            fetchGetComments();
+            renderComments(comments);
         });
     });
 };
