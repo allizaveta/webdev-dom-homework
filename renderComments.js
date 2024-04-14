@@ -1,8 +1,6 @@
-import {formatDate} from "./formatDate.js"
-import {initLikeButtonListeners} from "./likeButton.js"
+import {formatDate, initLikeButtonListeners, initAnswerListeners} from "./utilits.js"
 import { catchErrorGet, catchErrorPost } from "./errorHandler.js";
 import { renderLogin } from "./loginPage.js";
-import { initAnswerListeners } from "./answer.js";
 export function renderComments(comments) {
     const appElement = document.getElementById("app")
     const listElement = document.getElementById("list");
