@@ -1,6 +1,7 @@
 import { postComments, fetchGetComments } from "./api.js";
 import { renderComments } from "./renderComments.js";
 import { login } from "./api.js";
+import { nonAutorizeRender } from "./nonAutrizeRender.js";
 
 export function catchErrorPost(nameInputElement, textInputElement, comments) {
     postComments(nameInputElement.value, textInputElement.value)
@@ -77,7 +78,14 @@ export function catchErrorGet(comments) {
                 likes: comment.likes,
                 isLiked: comment.isLiked,
             }));
-            renderComments(comments);
+            document.addEventListener("DOMContentLoaded", () => {
+                const token = localStorage.getItem("token");
+                if (token) {
+                    renderComments(comments);
+                } else {
+                    WithAuthorizationButton(comments);
+                }
+            });
             preloader.classList.add('preloader-hidden');
         })
         .catch((error) => {

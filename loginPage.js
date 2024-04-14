@@ -1,5 +1,5 @@
 import { login, setToken } from "./api.js";
-import { catchErrorGet } from "./errorHandler.js";
+import { fetchGetComments } from "./api.js";
 
 export const renderLogin = () => {
     const appElement = document.getElementById("app");
@@ -28,7 +28,7 @@ export const renderLogin = () => {
             const loggedInUserName = responseData.user.name;
             const nameInputElement = document.querySelector(".add-form-name");
             
-            catchErrorGet();
+            fetchGetComments();
         });
     });
 };
