@@ -42,14 +42,10 @@ export function catchErrorPost(nameInputElement, textInputElement, comments) {
         .then((responseData) => {
             textInputElement.value = '';
             nameInputElement.value = '';
-            addForm.classList.add('hidden');
-            loader.classList.add('hidden');
             renderComments(comments);
             
         })
         .catch((error) => {
-            addForm.classList.remove('hidden');
-            loader.classList.add('hidden');
             alert('Произошла ошибка: ' + error.message);
             console.error(error);
         });
