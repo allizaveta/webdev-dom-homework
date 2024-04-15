@@ -1,7 +1,7 @@
 import {formatDate, initLikeButtonListeners, initAnswerListeners} from "./utilits.js"
 import { catchErrorGet, catchErrorPost } from "./errorHandler.js";
 
-export function renderComments(comments) {
+export function renderComments(comments, loggedInUserName) {
     const appElement = document.getElementById("app")
     const listElement = document.getElementById("list");
 
@@ -36,7 +36,7 @@ export function renderComments(comments) {
         <input
           type="text"
           class="add-form-name"
-          value=${name}
+          value=${loggedInUserName}
           id="name-input"
           readonly
         />

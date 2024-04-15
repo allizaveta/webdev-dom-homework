@@ -24,11 +24,8 @@ export const renderLogin = (comments) => {
             password: passwordInputElement.value,
         }).then((responseData) => {
             setToken(responseData.user.token);
-            // Обновляем элемент с классом .add-form-name только после успешной авторизации
             const loggedInUserName = responseData.user.name;
-            const nameInputElement = document.querySelector(".add-form-name");
-            
-            renderComments(comments);
+            renderComments(comments,loggedInUserName);
         });
     });
 };
