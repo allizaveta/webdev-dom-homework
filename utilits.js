@@ -17,10 +17,6 @@ export function initLikeButtonListeners(comments) {
         });
     });
 }
-
-
-
-
 //Цитирование
 export const initAnswerListeners = (comments, textInputElement) => {
     const headElements = document.querySelectorAll(".comment-header");

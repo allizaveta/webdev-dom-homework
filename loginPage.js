@@ -4,14 +4,14 @@ import { renderComments } from "./renderComments.js";
 
 export const renderLogin = (comments) => {
     const appElement = document.getElementById("app");
-    const loginHtml = `<div class="form">
-        <h3>Форма входа</h3>
-        <div class="form--row">
-            <input type="text" id="login-input" class="input" placeholder="Логин">
-            <input type="password" id="password-input" class="input" placeholder="Пароль">
+    const loginHtml = `<div class="form container">
+    <div class="form--row login-form">
+    <h3>Форма входа</h3>
+            <input type="text" id="login-input" class="input add-form-text" placeholder="Логин">
+            <input type="password" id="password-input" class="input add-form-text" placeholder="Пароль">
+        <button class="button add-form-button" id="login-button">Войти</button>
         </div>
-        <br>
-        <button class="button" id="login-button">Войти</button>
+        
     </div>`;
     appElement.innerHTML = loginHtml;
 
