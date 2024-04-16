@@ -49,6 +49,8 @@ export function catchErrorPost(nameInputElement, textInputElement, comments) {
 }
 
 
+
+
 export function catchErrorGet(comments) {
     fetchGetComments()
         .then((response) => {

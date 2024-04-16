@@ -78,7 +78,6 @@ export function renderComments(comments, loggedInUserName) {
       }
 
       catchErrorPost(nameInputElement, textInputElement, comments);
-      catchErrorGet(comments);
   });
 
   initLikeButtonListeners(comments);
