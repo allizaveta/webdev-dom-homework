@@ -40,15 +40,14 @@ export function catchErrorPost(nameInputElement, textInputElement, comments) {
         })
         .then((responseData) => {
             textInputElement.value = '';
-            nameInputElement.value = '';
             renderComments(comments);
-            
         })
         .catch((error) => {
             alert('Произошла ошибка: ' + error.message);
             console.error(error);
         });
 }
+
 
 export function catchErrorGet(comments) {
     fetchGetComments()
@@ -100,6 +99,3 @@ export function catchErrorLogin() {
         console.error(error);
     });
 }
-
-
-
