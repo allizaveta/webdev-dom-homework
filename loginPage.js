@@ -1,5 +1,6 @@
-import { login, setToken,fetchGetComments} from "./api.js";
+import { login, setToken, token } from "./api.js";
 import { renderComments } from "./renderComments.js";
+
 
 export const renderLogin = (comments) => {
     const appElement = document.getElementById("app");
@@ -28,4 +29,5 @@ export const renderLogin = (comments) => {
             renderComments(comments,loggedInUserName);
         });
     });
+    
 };

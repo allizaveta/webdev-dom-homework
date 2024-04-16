@@ -1,21 +1,25 @@
-import { renderComments } from './renderComments.js';
 //функционал лайков
 export function initLikeButtonListeners(comments) {
     const likeButtonElements = document.querySelectorAll(".like-button");
 
-    for (const likeButtonElement of likeButtonElements) {
+    likeButtonElements.forEach((likeButtonElement, index) => {
         likeButtonElement.addEventListener('click', () => {
-            const index = likeButtonElement.dataset.index;
             comments[index].isLiked = !comments[index].isLiked;
             if (comments[index].isLiked) {
                 comments[index].likes++;
+                likeButtonElement.classList.add('active-like');
             } else {
                 comments[index].likes--;
+                likeButtonElement.classList.remove('active-like');
             }
-            renderComments(comments);
+            const likesCounterElement = likeButtonElement.parentNode.querySelector(".likes-counter");
+            likesCounterElement.textContent = comments[index].likes;
         });
-    }
-};
+    });
+}
+
+
+
 
 //Цитирование
 export const initAnswerListeners = (comments, textInputElement) => {

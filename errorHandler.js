@@ -1,7 +1,6 @@
 import { postComments, fetchGetComments } from "./api.js";
-import { renderComments } from "./renderComments.js";
-import { login } from "./api.js";
-import { nonAutorizeRender } from "./nonAutrizeRender.js";
+import { renderComments,nonAutorizeRender } from "./renderComments.js";
+import { login,token } from "./api.js";
 
 export function catchErrorPost(nameInputElement, textInputElement, comments) {
     postComments(nameInputElement.value, textInputElement.value)
