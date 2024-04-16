@@ -91,6 +91,15 @@ export function catchErrorLogin() {
         } else if (response.status === 400) {
             alert('Неправильный логин или пароль');
             throw new Error('Неверные данные');
+        } else {
+            alert('Произошла ошибка при авторизации');
+            throw new Error('Ошибка: ' + response.status);
         }
-    }
-)};
+    }).catch(error => {
+        alert('Произошла ошибка при авторизации: ' + error.message);
+        console.error(error);
+    });
+}
+
+
+
