@@ -92,14 +92,16 @@ export function nonAutorizeRender(comments) {
   const commentsHtml = comments.map((comment, index) => {
       const likeButtonClass = comment.isLiked ? 'like-button active-like' : 'like-button';
       const formattedDate = formatDate(comment.date);
+      const escapedName = escapeHTML(comment.name);
+      const escapedText = escapeHTML(comment.text);
       return `<li class="comment">
           <div class="comment-header">
-              <div>${comment.name}</div>
+              <div>${escapedName}</div>
               <div>${formattedDate}</div>
           </div>
           <div class="comment-body">
               <div class="comment-text">
-                  ${comment.text}
+                  ${escapedText}
               </div>
           </div>
           <div class="comment-footer">
