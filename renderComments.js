@@ -45,7 +45,7 @@ export function renderComments(comments, loggedInUserName) {
       <input
         type="text"
         class="add-form-name"
-        value=${loggedInUserName}
+        value="${loggedInUserName}"
         id="name-input"
         readonly
       />
