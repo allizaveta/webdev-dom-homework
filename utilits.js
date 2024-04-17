@@ -6,12 +6,6 @@ export function initLikeButtonListeners(comments) {
     likeButtonElements.forEach((likeButtonElement, index) => {
         likeButtonElement.addEventListener('click', () => {
             const token = localStorage.getItem("token");
-
-            if (!token || token.trim() === '') {
-                alert('Чтобы поставить лайк - авторизуйтесь');
-                return;
-            }
-
             comments[index].isLiked = !comments[index].isLiked;
             if (comments[index].isLiked) {
                 comments[index].likes++;
