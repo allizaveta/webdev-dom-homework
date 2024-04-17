@@ -20,10 +20,25 @@ export const renderLogin = (comments) => {
     const passwordInputElement = document.getElementById("password-input");
 
     buttonElement.addEventListener("click", () => {
+        if (loginInputElement.value.trim() === '' || passwordInputElement.value.trim() === '') {
+            alert('Пожалуйста, заполните все поля.');
+            return;
+        }
         login({
             login: loginInputElement.value,
             password: passwordInputElement.value,
         }).then((responseData) => {
+            if (responseData.user && responseData.user.token) {
+                setToken(responseData.user.token);
+                const loggedInUserName = responseData.user.name;
+                renderComments(comments, loggedInUserName);
+            } else {
+                // Обработка случаев, когда свойство user или его токен отсутствуют
+                alert('Ошибка: Неверный формат ответа сервера');
+                console.error('Ошибка: Неверный формат ответа сервера', responseData);
+            }
+        })
+        .then((responseData) => {
             setToken(responseData.user.token);
             const loggedInUserName = responseData.user.name;
             renderComments(comments,loggedInUserName);
@@ -31,3 +46,4 @@ export const renderLogin = (comments) => {
     });
     
 };
+
