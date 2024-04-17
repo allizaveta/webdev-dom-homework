@@ -1,6 +1,5 @@
-import { postComments, fetchGetComments } from "./api.js";
+import { postComments, fetchGetComments,login,token } from "./api.js";
 import { renderComments,nonAutorizeRender } from "./renderComments.js";
-import { login,token } from "./api.js";
 
 export function catchErrorPost(nameInputElement, textInputElement, comments) {
     postComments(nameInputElement.value, textInputElement.value)
@@ -74,7 +73,7 @@ export function catchErrorGet(comments) {
             }));
                 const token = localStorage.getItem("token");
                 if (token) {
-                    renderComments(comments);
+                    renderComments(comments, token);
                 } else {
                     nonAutorizeRender(comments);
                 }

@@ -8,7 +8,7 @@ function escapeHTML(html) {
 }
 
 
-export function renderComments(comments, loggedInUserName) {
+export function renderComments(comments, loggedInUserName, token) {
   const appElement = document.getElementById("app")
   const listElement = document.getElementById("list");
 
@@ -80,7 +80,7 @@ export function renderComments(comments, loggedInUserName) {
       catchErrorPost(nameInputElement, textInputElement, comments);
   });
 
-  initLikeButtonListeners(comments);
+  initLikeButtonListeners(comments, token);
   initAnswerListeners(comments, textInputElement);
 }
 
@@ -125,7 +125,6 @@ export function nonAutorizeRender(comments) {
   const textInputElement = document.querySelector(".add-form-text");    
   const buttonElement = document.getElementById("send-button");
 
-  initLikeButtonListeners(comments);
   initAnswerListeners(comments, textInputElement);
 
   const autorizeButton = document.getElementById("autorization-button");

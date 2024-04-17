@@ -29,11 +29,12 @@ export const renderLogin = (comments) => {
             password: passwordInputElement.value,
         }).then((responseData) => {
             if (responseData.user && responseData.user.token) {
-                setToken(responseData.user.token);
+                const token = responseData.user.token; // Сохраняем токен в переменную
+                setToken(token);
+                console.log('Токен сохранён:', token); // Добавим это для проверки
                 const loggedInUserName = responseData.user.name;
-                renderComments(comments, loggedInUserName);
+                renderComments(comments, loggedInUserName, token);
             } else {
-                // Обработка случаев, когда свойство user или его токен отсутствуют
                 alert('Ошибка: Неверный формат ответа сервера');
                 console.error('Ошибка: Неверный формат ответа сервера', responseData);
             }
@@ -45,5 +46,5 @@ export const renderLogin = (comments) => {
         });
     });
     
+    
 };
-

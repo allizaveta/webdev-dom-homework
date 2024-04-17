@@ -1,9 +1,17 @@
 //функционал лайков
 export function initLikeButtonListeners(comments) {
+    console.log('Токен:', token);
     const likeButtonElements = document.querySelectorAll(".like-button");
 
     likeButtonElements.forEach((likeButtonElement, index) => {
         likeButtonElement.addEventListener('click', () => {
+            const token = localStorage.getItem("token");
+
+            if (!token || token.trim() === '') {
+                alert('Чтобы поставить лайк - авторизуйтесь');
+                return;
+            }
+
             comments[index].isLiked = !comments[index].isLiked;
             if (comments[index].isLiked) {
                 comments[index].likes++;
@@ -17,6 +25,8 @@ export function initLikeButtonListeners(comments) {
         });
     });
 }
+
+
 //Цитирование
 export const initAnswerListeners = (comments, textInputElement) => {
     const headElements = document.querySelectorAll(".comment-header");
