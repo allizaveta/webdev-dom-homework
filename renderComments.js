@@ -131,4 +131,13 @@ export function nonAutorizeRender(comments) {
     autorizeButton.addEventListener("click", () => {
     renderLogin(comments);
   });
+
+  const likeButtonElements = document.querySelectorAll(".like-button");
+
+  likeButtonElements.forEach((likeButtonElement, index) => {
+      likeButtonElement.addEventListener('click', () => {
+        alert('авторизуйтесь')
+      });
+  });
+
 }

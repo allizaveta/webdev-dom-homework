@@ -83,28 +83,3 @@ export function catchErrorGet(comments) {
             console.error(error);
         });       
 }
-
-// export function catchErrorLogin(loginInputElement, passwordInputElement) {
-//     if (loginInputElement.value.trim() === '' || passwordInputElement.value.trim() === '') {
-//         alert('Пожалуйста, заполните все поля.');
-//         return;
-//     }
-
-//     login({
-//         login: loginInputElement.value,
-//         password: passwordInputElement.value,
-//     }).then((response) => {
-//         if (response.ok) {
-//             return response.json();
-//         } else if (response.status === 400) {
-//             alert('Неправильный логин или пароль');
-//             throw new Error('Неверные учетные данные');
-//         } else {
-//             alert('Произошла ошибка при входе');
-//             throw new Error('Ошибка: ' + response.status);
-//         }
-//     }).catch(error => {
-//         alert('Произошла ошибка при входе: ' + error.message);
-//         console.error(error);
-//     });
-// }
