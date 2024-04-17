@@ -29,9 +29,8 @@ export const renderLogin = (comments) => {
             password: passwordInputElement.value,
         }).then((responseData) => {
             if (responseData.user && responseData.user.token) {
-                const token = responseData.user.token; // Сохраняем токен в переменную
+                const token = responseData.user.token;
                 setToken(token);
-                console.log('Токен сохранён:', token); // Добавим это для проверки
                 const loggedInUserName = responseData.user.name;
                 renderComments(comments, loggedInUserName, token);
             } else {
@@ -45,6 +44,4 @@ export const renderLogin = (comments) => {
             renderComments(comments,loggedInUserName);
         });
     });
-    
-    
 };

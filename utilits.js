@@ -1,6 +1,6 @@
+import { token } from "./api.js";
 //функционал лайков
 export function initLikeButtonListeners(comments) {
-    console.log('Токен:', token);
     const likeButtonElements = document.querySelectorAll(".like-button");
 
     likeButtonElements.forEach((likeButtonElement, index) => {
