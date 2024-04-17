@@ -75,7 +75,7 @@ export function catchErrorGet(comments) {
                 if (token) {
                     renderComments(comments, token);
                 } else {
-                    nonAutorizeRender(comments);
+                    nonAutorizeRender(comments, token);
                 }
             })
         .catch((error) => {

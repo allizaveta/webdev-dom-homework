@@ -28,6 +28,7 @@ export const renderLogin = (comments) => {
             login: loginInputElement.value,
             password: passwordInputElement.value,
         }).then((responseData) => {
+            console.log('Ответ от сервера:', responseData);
             if (responseData.user && responseData.user.token) {
                 const token = responseData.user.token;
                 setToken(token);
