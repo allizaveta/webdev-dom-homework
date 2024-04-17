@@ -39,11 +39,6 @@ export const renderLogin = (comments) => {
                 console.error('Ошибка: Неверный формат ответа сервера', responseData);
             }
         })
-        .then((responseData) => {
-            setToken(responseData.user.token);
-            const loggedInUserName = responseData.user.name;
-            renderComments(comments,loggedInUserName);
-        });
     });
 };
 
