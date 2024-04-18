@@ -1,6 +1,5 @@
-import { login, setToken, token } from "./api.js";
+import { login, setToken, setUser, getUser } from "./api.js";
 import { renderComments } from "./renderComments.js";
-
 
 export const renderLogin = (comments) => {
     const appElement = document.getElementById("app");
@@ -32,8 +31,9 @@ export const renderLogin = (comments) => {
             if (responseData.user && responseData.user.token) {
                 const token = responseData.user.token;
                 setToken(token);
-                const loggedInUserName = responseData.user.name;
-                renderComments(comments, loggedInUserName, token);
+                setUser(responseData.user.name);
+                console.log('Текущий пользователь:', getUser());
+                renderComments(comments);
             } else {
                 alert('Ошибка: Неверный формат ответа сервера');
                 console.error('Ошибка: Неверный формат ответа сервера', responseData);
@@ -41,4 +41,3 @@ export const renderLogin = (comments) => {
         })
     });
 };
-

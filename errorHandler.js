@@ -1,5 +1,5 @@
-import { postComments, fetchGetComments,login,token } from "./api.js";
-import { renderComments,nonAutorizeRender } from "./renderComments.js";
+import { postComments, fetchGetComments, login, token, user, setUser } from "./api.js";
+import { renderComments, nonAutorizeRender } from "./renderComments.js";
 
 export function catchErrorPost(nameInputElement, textInputElement, comments) {
     postComments(nameInputElement.value, textInputElement.value)
@@ -47,9 +47,6 @@ export function catchErrorPost(nameInputElement, textInputElement, comments) {
         });
 }
 
-
-
-
 export function catchErrorGet(comments) {
     fetchGetComments()
         .then((response) => {
@@ -58,7 +55,8 @@ export function catchErrorGet(comments) {
             } else if (response.status === 500) {
                 throw new Error('Ошибка сервера: 500');
             } else if(response.status === 401) {
-                throw new Error('Отсутствует авторизация')}
+                throw new Error('Отсутствует авторизация')
+            }
             else {
                 throw new Error('Ошибка: ' + response.status);
             }
@@ -73,9 +71,9 @@ export function catchErrorGet(comments) {
             }));
                 const token = localStorage.getItem("token");
                 if (token) {
-                    renderComments(comments, token);
+                    renderComments(comments);
                 } else {
-                    nonAutorizeRender(comments, token);
+                    nonAutorizeRender(comments);
                 }
             })
         .catch((error) => {

@@ -1,6 +1,7 @@
 import {formatDate, initLikeButtonListeners, initAnswerListeners} from "./utilits.js"
 import { catchErrorGet, catchErrorPost } from "./errorHandler.js";
 import { renderLogin } from "./loginPage.js";
+import { getUser } from "./api.js";
 
 function escapeHTML(html) {
   return html.replaceAll("<", "&lt;")
@@ -8,7 +9,7 @@ function escapeHTML(html) {
 }
 
 
-export function renderComments(comments, loggedInUserName, token) {
+export function renderComments(comments, token) {
   const appElement = document.getElementById("app")
   const listElement = document.getElementById("list");
 
@@ -45,7 +46,7 @@ export function renderComments(comments, loggedInUserName, token) {
       <input
         type="text"
         class="add-form-name"
-        value="${loggedInUserName}"
+        value="${getUser()}"
         id="name-input"
         readonly
       />

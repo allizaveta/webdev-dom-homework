@@ -2,9 +2,19 @@ let host = "https://wedev-api.sky.pro/api/v2/:elizaveta-aleksandrova/comments";
 let userUrl ="https://wedev-api.sky.pro/api/user/login";
 
 export let token;
+export let user;
 
 export const setToken = (newToken) =>{
     token = newToken;
+};
+
+export const setUser = (newUser) =>{
+    console.log('Установлен пользователь:', newUser);
+    user = newUser;
+};
+
+export const getUser = () => {
+    return user;
 };
 
 export function fetchGetComments() {
