@@ -60,7 +60,6 @@ export function renderComments(comments, loggedInUserName, token) {
         <button class="add-form-button" id="send-button">Написать</button>
       </div>
     </div>
-    <p id="loader" class="hidden">Комментарий добавляется...</p>
   </div>`;
   appElement.innerHTML = appHtml;
   const nameInputElement = document.querySelector(".add-form-name");
@@ -117,8 +116,7 @@ export function nonAutorizeRender(comments) {
     <ul class="comments" id="list">
       ${commentsHtml}
     </ul>
-    <p id="autorization-button">Чтобы оставлять комментарии - авторизуйтесь</p>
-    <p id="loader" class="hidden">Коментарий добавляется...</p>
+    <p id="autorization-button">Чтобы оставлять комментарии - авторизуйтесь</p>ы
   </div>`;
   appElement.innerHTML = appHtml;
   const nameInputElement = document.querySelector(".add-form-name");
